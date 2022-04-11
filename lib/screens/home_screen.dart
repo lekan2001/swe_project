@@ -43,9 +43,9 @@ class HomeScreen extends StatelessWidget {
                           )
                         ]
                       )
-                      ),
                     ),
-                    const SizedBox(height: 30),
+                  ),
+                  const SizedBox(height: 30),
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
@@ -84,6 +84,24 @@ class HomeScreen extends StatelessWidget {
                                       },
                                       pressRead: () {},
                           ),
+                          ReadingListCard(
+                           image: "assets/images/book-3.png",
+                                      title: "How to win & influ...",
+                                      auth: "Gary Venchuk",
+                                      rating: 4.8,
+                                      pressDetails: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) {
+                                              return DetailsScreen();
+                                            },
+                                          ),
+                                        );
+                                      },
+                                      pressRead: () {},
+                          ),
+                          
                           const SizedBox(width: 30),
                         ],
                       ),
