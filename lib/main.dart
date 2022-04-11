@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:swe_project/constants.dart';
+import 'package:swe_project/screens/home_screen.dart';
 import 'package:swe_project/widgets/rounded_button.dart';
 
 void main() {
@@ -60,7 +61,12 @@ class WelcomePage extends StatelessWidget {
               width: MediaQuery.of(context).size.width * .6,
               child: RoundedButton(
                 text: "start reading",
-                press: (){},
+                press: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return const HomeScreen();
+                  },
+                ));
+              },
                 fontSize: 20,
               ),
             )
