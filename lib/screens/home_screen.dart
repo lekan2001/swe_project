@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:swe_project/constants.dart';
+import 'package:swe_project/screens/details_screen.dart';
 import 'package:swe_project/widgets/book_rating.dart';
+import 'package:swe_project/widgets/reading_card_list.dart';
 import 'package:swe_project/widgets/two_sided_round_button.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -10,68 +12,207 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Container(
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/images/main_page_bg.png"),
-            alignment: Alignment.topCenter,
-            fit: BoxFit.fitWidth,
-            )
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(height: size.height * .1,),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: RichText(text: TextSpan(
-                  style: Theme.of(context).textTheme.headline5,
-                  children: const [
-                    TextSpan(text: "What are you \n reading"),
-                    TextSpan(
-                      text: "today?",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      )
-                    )
-                  ]
-                )
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              width: double.infinity,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/images/main_page_bg.png"),
+                  alignment: Alignment.topCenter,
+                  fit: BoxFit.fitWidth,
+                  )
                 ),
-              ),
-              const SizedBox(height: 30),
-              //ReadingListCard()
-            ],
-          ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    SizedBox(height: size.height * .1,),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                      child: RichText(text: TextSpan(
+                        style: Theme.of(context).textTheme.headline5,
+                        children: const [
+                          TextSpan(text: "What are you \n reading "),
+                          TextSpan(
+                            text: "today?",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            )
+                          )
+                        ]
+                      )
+                      ),
+                    ),
+                    const SizedBox(height: 30),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          ReadingListCard(
+                           image: "assets/images/book-1.png",
+                                      title: "Crushing & Influence",
+                                      auth: "Gary Venchuk",
+                                      rating: 4.9,
+                                      pressDetails: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) {
+                                              return DetailsScreen();
+                                            },
+                                          ),
+                                        );
+                                      },
+                                      pressRead: () {},
+                          ),
+                          ReadingListCard(
+                           image: "assets/images/book-2.png",
+                                      title: "Top Ten Business Hacks",
+                                      auth: "Herman Joel",
+                                      rating: 4.8,
+                                      pressDetails: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) {
+                                              return DetailsScreen();
+                                            },
+                                          ),
+                                        );
+                                      },
+                                      pressRead: () {},
+                          ),
+                          const SizedBox(width: 30),
+                        ],
+                      ),
+                    ),
+                     Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                            RichText(
+                              text: TextSpan(
+                                style: Theme.of(context).textTheme.headline4,
+                                children: const [
+                                  TextSpan(text: "Best of the "), 
+                                  TextSpan(
+                                    text: "day",
+                                    style: TextStyle(fontWeight: FontWeight.bold)
+                                  )
+                                ]
+                              )
+                            ),
+                            bestOfTheDayCard(size,context),
+                            RichText(
+                                text: TextSpan(
+                                  style: Theme.of(context).textTheme.headline5,
+                                  children: const [
+                                    TextSpan(text: "Continue "),
+                                    TextSpan(
+                                      text: "reading...",
+                                      style: TextStyle(fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(height: 20),
+                              Container(
+                                height: 80,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(38.5),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      offset: const Offset(0, 10),
+                                      blurRadius: 33,
+                                      color: const Color(0xFFD3D3D3).withOpacity(.84),
+                                    ),
+                                  ],
+                                ),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(38.5),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Expanded(
+                                        child: Padding(
+                                          padding:  const EdgeInsets.only(
+                                            left: 30,
+                                            right: 20
+                                          ),
+                                          child: Row(
+                                            children: <Widget>[
+                                              Expanded(
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                   MainAxisAlignment.end,
+                                                  crossAxisAlignment: 
+                                                  CrossAxisAlignment.start,
+                                                  children: const <Widget>[
+                                                    Text("Crushing & Influence", 
+                                                    style: TextStyle(
+                                                      fontWeight: FontWeight.bold,
+                                                    ),),
+                                                    Text("Gary Venchuck", style: TextStyle(
+                                                      color: kLightBlackCOlor,
+                                                    ),),
+                                                    Align(
+                                                      alignment: Alignment.bottomRight,
+                                                      child: Text("Chapter 7 of 10", 
+                                                      style: TextStyle(
+                                                        fontSize: 10,
+                                                        color: kLightBlackCOlor,
+                                                      ),),
+                                                    ),
+                                                    SizedBox(height: 5,)
+                                                  ],
+                                                ),
+                                              ),
+                                              Image.asset("assets/images/book-1.png",
+                                              width: 55,)
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                        height: 7,
+                                        width: size.width * .65,
+                                        decoration: BoxDecoration(
+                                          color: kProgressIndicator,
+                                          borderRadius: BorderRadius.circular(7)
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 40,),
+
+      
+                        ],
+                      ),
+                    
+                    ),
+                    
+                  ],
+                ),
+            ),
+          ],
+        ),
       ),
       
     );
   }
 }
-
-class ReadingListCard extends StatelessWidget {
-  final String image;
-  final String title;
-  final String author;
-  final double? rating;
-  final Function? pressDetails;
-  final Function? pressRead;
-  const ReadingListCard({
-    Key? key,
-     required this.image, 
-     required this.title, 
-     required this.author, 
-     this.rating, 
-     this.pressDetails, 
-     this.pressRead,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
+Container bestOfTheDayCard(Size size, BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(left: 24,bottom: 40),
+      margin: const EdgeInsets.symmetric(vertical: 20),
+      width: double.infinity,
       height: 245,
-      width: 202,
       child: Stack(
         children: <Widget>[
           Positioned(
@@ -79,96 +220,87 @@ class ReadingListCard extends StatelessWidget {
             left: 0,
             right: 0,
             child: Container(
-              height: 221,
+              padding: EdgeInsets.only(
+                left: 24,
+                top: 24,
+                right: size.width * .35,
+              ),
+              height: 230,
+              width: double.infinity,
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Color(0xFFEAEAEA).withOpacity(.45),
                 borderRadius: BorderRadius.circular(29),
-                boxShadow: [
-                  BoxShadow(
-                    offset: const Offset(0,10),
-                    blurRadius:33,
-                    color: kShadowColor,
-                  )
-                ]
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Container(
+                    margin: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+                    child: const Text(
+                      "New York Time Best For 11th March 2020",
+                      style: TextStyle(
+                        fontSize: 9,
+                        color: kLightBlackCOlor,
+                      ),
+                    ),
+                  ),
+                  Text(
+                    "How To Win \nFriends &  Influence",
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
+                  const Text(
+                    "Gary Venchuk",
+                    style: TextStyle(color: kLightBlackCOlor),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10, bottom: 10.0),
+                    child: Row(
+                      children: const <Widget>[
+                        Padding(
+                          padding: EdgeInsets.only(right: 10.0), 
+                          child: BookRating(score: 4.9),
+                        ),
+                        Expanded(
+                          child: Text(
+                            "When the earth was flat and everyone wanted to win the game of the best and people….",
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: 10,
+                              color: kLightBlackCOlor,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
-          Image.asset(
-          image, 
-          width: 150,
+          Positioned(
+            right: 0,
+            top: 0,
+            child: Image.asset(
+              "assets/images/book-3.png",
+              width: size.width * .37,
+            ),
           ),
           Positioned(
-            top: 35,
-            right: 10,
-            child: Column(
-            children: <Widget>[
-              IconButton(
-                onPressed: (){},
-                 icon: const Icon(
-                   Icons.favorite_border,
-                   )
-                  ),
-              const BookRating(score: 4.9)
-            ],
-          )
-        ),
-        Positioned(
-          top: 160,
-          child: Container(
-            height: 85,
-            width: 202,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(left: 24),
-                  child: RichText(
-                    maxLines: 2,
-                    text: const TextSpan(
-                    style: TextStyle(color: kBlackColor),
-                    children: [
-                      TextSpan(
-                        text: "title\n",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold
-                        )
-                      ),
-                      TextSpan(
-                        text: "author", 
-                        style: TextStyle(
-                          color: kLightBlackCOlor))
-                        ],
-                      )
-                    ),
-                  ),
-                  const Spacer(),
-                  Row(
-                    children:<Widget> [
-                      GestureDetector(
-                        onTap: (){},
-                        child: Container(
-                          width: 101,
-                          padding: const EdgeInsets.symmetric(vertical: 10),
-                          alignment: Alignment.center,
-                          child: const Text("Details"),
-                        ),
-                      ),
-                      const Expanded(
-                        child: TwoSidedRoundButton(
-                          text: "Read", 
-                          radius: 24,
-                          )
-                    )
-                    ],
-                  )
-              ],
+            bottom: 0,
+            right: 0,
+            child: SizedBox(
+              height: 40,
+              width: size.width * .3,
+              child: TwoSidedRoundButton(
+                text: "Read",
+                radius: 24,
+                press: () {},
+              ),
             ),
-
-        )
-      )
-      ],
+          ),
+        ],
       ),
     );
   }
-}
 
