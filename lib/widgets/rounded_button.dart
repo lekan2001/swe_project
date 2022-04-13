@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 class RoundedButton extends StatelessWidget {
 
   final String text;
-  final VoidCallback press;
+  final VoidCallback? press;
   final double verticalPadding;
   final double fontSize;
 
   const RoundedButton({
     Key? key,
     required this.text,
-    required this.press,
+    this.press,
     this.verticalPadding = 16,
     this.fontSize = 16, 
   }) : super(key: key);
