@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:swe_project/constants.dart';
-import 'package:swe_project/screens/youtube_player.dart';
 import 'package:swe_project/widgets/book_rating.dart';
 import 'package:swe_project/widgets/rounded_button.dart';
 
-class DetailsScreen extends StatelessWidget {
-  const DetailsScreen({ Key? key }) : super(key: key);
+class DetailsScreenOne extends StatelessWidget {
+  const DetailsScreenOne({ Key? key }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -156,9 +155,6 @@ class DetailsScreen extends StatelessWidget {
                                     child: RoundedButton(
                                       text: "Read",
                                       verticalPadding: 10,
-                                      
-                                      
-                                    
                                     ),
                                   ),
                                 ],
@@ -266,9 +262,9 @@ class BookInfo extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text("Crushing & ", 
+              Text("Top Ten", 
               style: Theme.of(context).textTheme.headline5,),
-              Text("Influence", 
+              Text("Business Hacks", 
               style: Theme.of(context)
               .textTheme
               .headline5
@@ -307,7 +303,7 @@ class BookInfo extends StatelessWidget {
             ],
           )
         ),
-        Image.asset("assets/images/book-1.png",
+        Image.asset("assets/images/book-2.png",
         height: 200,
 
         ),

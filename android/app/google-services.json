@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "725085848813",
+    "project_id": "swe-project-dc016",
+    "storage_bucket": "swe-project-dc016.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:725085848813:android:6f9c2abcc2db16881a78e4",
+        "android_client_info": {
+          "package_name": "com.example.swe_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "725085848813-rkrpt3esm4ca1gogt7689lnf678cfh4d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxnT4XWfI9uUZLvDMyUvxhzFGUxnKs8vc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "725085848813-rkrpt3esm4ca1gogt7689lnf678cfh4d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

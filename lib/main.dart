@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:swe_project/constants.dart';
+import 'package:swe_project/provider/google_sign_in.dart';
 import 'package:swe_project/screens/home_screen.dart';
 import 'package:swe_project/widgets/rounded_button.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -13,16 +19,19 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Library App',
-      theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white,
-        textTheme: Theme.of(context).textTheme.apply(
-          displayColor: kBlackColor
-        )
+    return ChangeNotifierProvider(
+      create:  (context) => GoogleSignInProvider(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Library App',
+        theme: ThemeData(
+          scaffoldBackgroundColor: Colors.white,
+          textTheme: Theme.of(context).textTheme.apply(
+            displayColor: kBlackColor
+          )
+        ),
+        home: const WelcomePage(),
       ),
-      home: const WelcomePage(),
     );
   }
 }
@@ -69,7 +78,21 @@ class WelcomePage extends StatelessWidget {
               },
                 fontSize: 20,
               ),
-            )
+            ),
+            //Spacer(),
+            ElevatedButton.icon(
+              onPressed: (){
+                final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
+                provider.googleLogin();
+              }, 
+            label:const Text("Sign Up with Google"),
+            style: ElevatedButton.styleFrom(
+              primary: Colors.white,
+              onPrimary: Colors.black,
+              minimumSize: const Size(200, 50)
+            ),
+             icon: const FaIcon(FontAwesomeIcons.google, color: Colors.red,),
+            ),
           ],
         )
         ,
