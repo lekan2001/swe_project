@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:swe_project/constants.dart';
 import 'package:swe_project/screens/details_screen.dart';
 import 'package:swe_project/screens/details_screen_one.dart';
+import 'package:swe_project/screens/loggedIn_page.dart';
 import 'package:swe_project/widgets/book_rating.dart';
 import 'package:swe_project/widgets/reading_card_list.dart';
 import 'package:swe_project/widgets/two_sided_round_button.dart';
@@ -12,6 +13,10 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    final user = FirebaseAuth.instance.currentUser!;
+    var user_name = user.displayName;
+    var user_email = user.email;
+
     return StreamBuilder(
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot){
@@ -24,224 +29,13 @@ class HomeScreen extends StatelessWidget {
           return const Center(
             child: Text('Something Went Wrong!'));
         } else if(snapshot.hasData){
-              return  Scaffold(
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                width: double.infinity,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage("assets/images/main_page_bg.png"),
-                    alignment: Alignment.topCenter,
-                    fit: BoxFit.fitWidth,
-                    )
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      SizedBox(height: size.height * .1,),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 24),
-                        child: RichText(text: TextSpan(
-                          style: Theme.of(context).textTheme.headline5,
-                          children: const [
-                            TextSpan(text: "What are you \n reading "),
-                            TextSpan(
-                              text: "today?",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                              )
-                            )
-                          ]
-                        )
-                      ),
-                    ),
-                    const SizedBox(height: 30),
-                      SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: [
-                            ReadingListCard(
-                             image: "assets/images/book-1.png",
-                                        title: "Crushing & Influence",
-                                        auth: "Gary Venchuk",
-                                        rating: 4.9,
-                                        pressDetails: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) {
-                                                return DetailsScreen();
-                                              },
-                                            ),
-                                          );
-                                        },
-                                        pressRead: () {},
-                            ),
-                            ReadingListCard(
-                             image: "assets/images/book-2.png",
-                                        title: "Top Ten Business Hacks",
-                                        auth: "Herman Joel",
-                                        rating: 4.8,
-                                        pressDetails: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) {
-                                                return DetailsScreenOne();
-                                              },
-                                            ),
-                                          );
-                                        },
-                                        pressRead: () {},
-                            ),
-                            ReadingListCard(
-                             image: "assets/images/book-3.png",
-                                        title: "How to win & influ...",
-                                        auth: "Gary Venchuk",
-                                        rating: 4.8,
-                                        pressDetails: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) {
-                                                return DetailsScreen();
-                                              },
-                                            ),
-                                          );
-                                        },
-                                        pressRead: () {},
-                            ),
-                            
-                            const SizedBox(width: 30),
-                          ],
-                        ),
-                      ),
-                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 24),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                              RichText(
-                                text: TextSpan(
-                                  style: Theme.of(context).textTheme.headline4,
-                                  children: const [
-                                    TextSpan(text: "Best of the "), 
-                                    TextSpan(
-                                      text: "day",
-                                      style: TextStyle(fontWeight: FontWeight.bold)
-                                    )
-                                  ]
-                                )
-                              ),
-                              bestOfTheDayCard(size,context),
-                              RichText(
-                                  text: TextSpan(
-                                    style: Theme.of(context).textTheme.headline5,
-                                    children: const [
-                                      TextSpan(text: "Continue "),
-                                      TextSpan(
-                                        text: "reading...",
-                                        style: TextStyle(fontWeight: FontWeight.bold),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                const SizedBox(height: 20),
-                                Container(
-                                  height: 80,
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(38.5),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        offset: const Offset(0, 10),
-                                        blurRadius: 33,
-                                        color: const Color(0xFFD3D3D3).withOpacity(.84),
-                                      ),
-                                    ],
-                                  ),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(38.5),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        Expanded(
-                                          child: Padding(
-                                            padding:  const EdgeInsets.only(
-                                              left: 30,
-                                              right: 20
-                                            ),
-                                            child: Row(
-                                              children: <Widget>[
-                                                Expanded(
-                                                  child: Column(
-                                                    mainAxisAlignment:
-                                                     MainAxisAlignment.end,
-                                                    crossAxisAlignment: 
-                                                    CrossAxisAlignment.start,
-                                                    children: const <Widget>[
-                                                      Text("Crushing & Influence", 
-                                                      style: TextStyle(
-                                                        fontWeight: FontWeight.bold,
-                                                      ),),
-                                                      Text("Gary Venchuck", style: TextStyle(
-                                                        color: kLightBlackCOlor,
-                                                      ),),
-                                                      Align(
-                                                        alignment: Alignment.bottomRight,
-                                                        child: Text("Chapter 7 of 10", 
-                                                        style: TextStyle(
-                                                          fontSize: 10,
-                                                          color: kLightBlackCOlor,
-                                                        ),),
-                                                      ),
-                                                      SizedBox(height: 5,)
-                                                    ],
-                                                  ),
-                                                ),
-                                                Image.asset("assets/images/book-1.png",
-                                                width: 55,)
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        Container(
-                                          height: 7,
-                                          width: size.width * .65,
-                                          decoration: BoxDecoration(
-                                            color: kProgressIndicator,
-                                            borderRadius: BorderRadius.circular(7)
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(height: 40,),
-    
-        
-                          ],
-                        ),
-                      
-                      ),
-                      
-                    ],
-                  ),
-              ),
-            ],
-          ),
-        ),
-        
-      );
-
+          return const LoggedInPage();
         }
         else { 
-          return const Center(
-            child: Text('Else!'));
+          return Container(
+            child: const Center(
+              child: Text('Please Sign In')),
+          );
             } 
       },
      // child:

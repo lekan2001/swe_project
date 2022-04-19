@@ -46,6 +46,12 @@ dependencies:
   #State Management
   provider: ^5.0.0
 
+  #Advanced Drawer
+  flutter_advanced_drawer: ^1.2.3+1
+
+  #Drawer Icons
+  iconsax: ^0.0.8
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
