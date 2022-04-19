@@ -51,15 +51,6 @@ class _LoggedInPageState extends State<LoggedInPage> {
             // shows the drawer that's displayed when account icon is tapped
             drawer: drawer(),
        child: Scaffold(
-         appBar: AppBar(
-           backgroundColor: Colors.pink[50],
-           elevation: 0,
-           foregroundColor: Colors.black,
-           leading: IconButton(
-             onPressed: _handleProfileButtonPressed,
-              icon: Icon(Iconsax.profile_2user)
-              ),
-         ),
           body: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,6 +67,13 @@ class _LoggedInPageState extends State<LoggedInPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
+                         SizedBox(height: 25),
+                        Container(
+
+                          child: IconButton(icon: Icon(Iconsax.profile_2user),onPressed: () {
+                            _handleProfileButtonPressed();
+                          },),
+                        ),
                         //SizedBox(height: size.height * .1,),
                         //Center(
                           Padding(
