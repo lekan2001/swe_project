@@ -19,14 +19,13 @@ class LoggedInPage extends StatefulWidget {
 
 class _LoggedInPageState extends State<LoggedInPage> {
   final _advancedDrawerController = AdvancedDrawerController();
-
+  final user = FirebaseAuth.instance.currentUser!;
   void _handleProfileButtonPressed() {
     _advancedDrawerController.showDrawer();
   }
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    final user = FirebaseAuth.instance.currentUser!;
     var user_name = user.displayName;
     var user_email = user.email;
      return  AdvancedDrawer(
@@ -70,7 +69,7 @@ class _LoggedInPageState extends State<LoggedInPage> {
                          SizedBox(height: 25),
                         Container(
 
-                          child: IconButton(icon: Icon(Iconsax.profile_2user),onPressed: () {
+                          child: IconButton(icon: Icon(Iconsax.setting_2, color: Colors.black,),onPressed: () {
                             _handleProfileButtonPressed();
                           },),
                         ),
@@ -308,7 +307,7 @@ class _LoggedInPageState extends State<LoggedInPage> {
                     color: Colors.grey.shade800,
                     shape: BoxShape.circle,
                   ),
-                  child: Image.asset('assets/images/book-1.png')),
+                  child: Image(image: NetworkImage(user.photoURL!),)),
               SizedBox(height: 10),
               Spacer(),
               Divider(
