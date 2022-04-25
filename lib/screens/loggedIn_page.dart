@@ -4,12 +4,15 @@ import 'package:provider/provider.dart';
 import 'package:swe_project/constants.dart';
 import 'package:swe_project/main.dart';
 import 'package:swe_project/provider/google_sign_in.dart';
+import 'package:swe_project/screens/contact_us.dart';
 import 'package:swe_project/screens/details_screen.dart';
 import 'package:swe_project/screens/details_screen_one.dart';
 import 'package:swe_project/screens/home_screen.dart';
+import 'package:swe_project/screens/security.dart';
 import 'package:swe_project/widgets/reading_card_list.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:swe_project/screens/notification.dart';
 class LoggedInPage extends StatefulWidget {
   const LoggedInPage({ Key? key }) : super(key: key);
 
@@ -322,6 +325,12 @@ class _LoggedInPageState extends State<LoggedInPage> {
               ),
               ListTile(
                 onTap: () {
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (context) {
+                      return Security();
+                    },
+                  ),);
+
                  // Navigator.pushNamed(context, SECURITY_ROUTE);
                 },
                 leading: Icon(Iconsax.security, color: Colors.black,),
@@ -329,7 +338,11 @@ class _LoggedInPageState extends State<LoggedInPage> {
               ),
               ListTile(
                 onTap: () {
-                  //Navigator.pushNamed(context, NOTIFICATION_ROUTE);
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (context) {
+                      return NotificationScreen();
+                    },
+                  ),);
                 },
                 leading: Icon(Iconsax.notification, color: Colors.black,),
                 title: Text('Notification', style: TextStyle(color: Colors.black)),
@@ -345,6 +358,11 @@ class _LoggedInPageState extends State<LoggedInPage> {
               ),
               ListTile(
                 onTap: () {
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (context) {
+                      return ContactUsScreen();
+                    },
+                  ),);
                  // Navigator.pushNamed(context, SUPPORT_ROUTE);
                 },
                 leading: Icon(Iconsax.support, color: Colors.black,),

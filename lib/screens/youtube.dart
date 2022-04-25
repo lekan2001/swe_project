@@ -5,7 +5,16 @@ class youtube extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Youtube'),
+        elevation: 0,
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.red,
+      ),
+      body: Container(
+        color: Colors.white,
+      ),
       
     );
   }
