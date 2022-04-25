@@ -17,14 +17,36 @@ class notes extends StatelessWidget {
       ),
       
       body: Column(
-        children: const [
+        children:[
           Center(
             child: Padding(
-              padding: EdgeInsets.only(left: 40, right: 40),
-              
+              padding: const EdgeInsets.only(left: 40, right: 40),
               child: RoundedButton(
                 text: "Upload", 
                 color: Colors.black12,
+                press: () async {
+                  final results = await FilePicker.platform.pickFiles(
+                    allowMultiple: false,
+                    type: FileType.custom,
+                    allowedExtensions: ['png', 'jpg', 'heic'],
+                  );
+                  if (results == null){
+                    ScaffoldMessenger
+                        .of(context)
+                        .showSnackBar(
+                        const SnackBar(
+                            content: Text(
+                                'No file selected.'
+                            )
+                        )
+                    );
+                    return null;
+                  }
+                  final path = results.files.single.path!;
+                  final fileName = results.files.single.name;
+                  print(path);
+                  print(fileName);
+                },
                 ),
             ),
           )
