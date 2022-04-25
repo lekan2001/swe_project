@@ -52,6 +52,15 @@ dependencies:
   #Drawer Icons
   iconsax: ^0.0.8
 
+  #firebase_core
+  firebase_core: ^1.6.0
+
+  #firebase_storage
+  firebase_storage: ^10.0.3
+
+  #file_picker
+  file_picker: ^4.0.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

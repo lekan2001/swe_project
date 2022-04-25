@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:swe_project/constants.dart';
 import 'package:swe_project/provider/google_sign_in.dart';
 import 'package:swe_project/screens/home_screen.dart';
+import 'package:swe_project/screens/navigation_bar.dart';
 import 'package:swe_project/widgets/rounded_button.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -72,7 +73,7 @@ class WelcomePage extends StatelessWidget {
                 text: "start reading",
                 press: (){
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return const HomeScreen();
+                    return const navigation_bar();
                   },
                 ));
               },
