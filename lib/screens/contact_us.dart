@@ -1,7 +1,10 @@
-import 'dart:ui';
+
+
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:swe_project/widgets/rounded_button.dart';
+import 'package:http/http.dart' as http;
 // import 'package:payhup_app/views/constants.dart';
 // import 'package:payhup_app/field_container.dart';
 
@@ -20,6 +23,9 @@ class AlwaysDisabledFocusNode extends FocusNode {
 }
 
 class ContactUsScreenState extends State<ContactUsScreen> {
+  var userNameController = TextEditingController();
+  var userEmailController = TextEditingController();
+  var userMessageController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,9 +49,10 @@ class ContactUsScreenState extends State<ContactUsScreen> {
                   Container(
                     height: 100,
                     child: TextFormField(
-                      focusNode: new AlwaysDisabledFocusNode(),
+                      controller: userNameController,
+                      //focusNode: new AlwaysDisabledFocusNode(),
                       obscureText: false,
-                      initialValue: "John Doe",
+                      //initialValue: "John Doe",
                       maxLines: 1,
                       decoration: InputDecoration(
                         filled: true,
@@ -60,8 +67,10 @@ class ContactUsScreenState extends State<ContactUsScreen> {
                   Container(
                     height: 100,
                     child: TextFormField(
+                      controller: userEmailController,
                       obscureText: false,
-                      initialValue: "johndoe@gmail.com",
+
+                      //initialValue: "johndoe@gmail.com",
                       maxLines: 1,
                       decoration: InputDecoration(
                         filled: true,
@@ -76,6 +85,7 @@ class ContactUsScreenState extends State<ContactUsScreen> {
                   Container(
                     height: 250,
                     child: TextFormField(
+                      controller: userMessageController,
                       obscureText: false,
                       maxLines: 10,
                       decoration: InputDecoration(
@@ -95,7 +105,13 @@ class ContactUsScreenState extends State<ContactUsScreen> {
                     alignment: Alignment.center,
                     child: RoundedButton(
                       text: "Send",
-                      press: () {},
+                      press: () {
+                        sendEmail(
+                            userNameController.text.toString(),
+                            userEmailController.text.toString(),
+                            userMessageController.text.toString()
+                        );
+                      },
                       color: Colors.pink,
                     ),
                   ),
@@ -109,5 +125,35 @@ class ContactUsScreenState extends State<ContactUsScreen> {
                       style: new TextStyle(
                           fontWeight: FontWeight.normal, color: Colors.pink[50]))
                 ]))));
+  }
+  Future sendEmail(
+       String name,
+       String email,
+       String message) async{
+    final serviceId = 'service_2ae5o8p';
+    final templateId = 'template_92q67n4';
+    final userId = 'AVucqlEUicOXW5zKS';
+    final accessToken = 'r6m0BWtKL4OfAV5GyuN7j';
+
+    final url = Uri.parse('https://api.emailjs.com/api/v1.0/email/send');
+    final response = await http.post(
+      url,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: json.encode({
+        'service_id' : serviceId,
+        'template_id': templateId,
+        'user_id' : userId,
+        'accessToken' : accessToken,
+        'template_params': {
+          'user_name' : name,
+          'user_email' : email,
+          'user_message' : message
+        }
+      }
+      )
+    );
+    print(response.body);
   }
 }

@@ -286,9 +286,6 @@ class BookInfo extends StatelessWidget {
                          ),
                          ),
                          SizedBox(height: 5),
-                         RoundedButton(text: "Read",
-                         verticalPadding: 10,
-                          )
                       ],
                   )),
                   Column(children: <Widget>[

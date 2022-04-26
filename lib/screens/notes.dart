@@ -12,6 +12,7 @@ class notes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Storage storage = Storage();
+    //storage.listFiles();
     return Scaffold(
 
       appBar: AppBar(

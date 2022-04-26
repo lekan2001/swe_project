@@ -7,9 +7,18 @@ import 'package:swe_project/screens/loggedIn_page.dart';
 import 'package:swe_project/widgets/book_rating.dart';
 import 'package:swe_project/widgets/reading_card_list.dart';
 import 'package:swe_project/widgets/two_sided_round_button.dart';
-
-class HomeScreen extends StatelessWidget {
+import 'package:url_launcher/url_launcher.dart';
+class HomeScreen extends StatefulWidget {
   const HomeScreen({ Key? key }) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+
+
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -31,19 +40,39 @@ class HomeScreen extends StatelessWidget {
         } else if(snapshot.hasData){
           return const LoggedInPage();
         }
-        else { 
+        else {
           return Container(
             child: const Center(
               child: Text('Please Sign In')),
           );
-            } 
+            }
       },
      // child:
     );
   }
 }
 Container bestOfTheDayCard(Size size, BuildContext context) {
-    return Container(
+  String launchURL = 'https://www.youtube.com';
+  Future<void> _launchInBrowser(String url) async{
+    // ignore: deprecated_member_use
+    if (await canLaunch(url)){
+      // ignore: deprecated_member_use
+      await launch(
+          url,
+          forceSafariVC: true,
+          forceWebView: true,
+          headers: <String, String>{
+            'header_key' : 'header_value'
+          }
+      );
+
+    } else{
+      throw 'Could not launch $url';
+    }
+  }
+
+
+  return Container(
       margin: const EdgeInsets.symmetric(vertical: 20),
       width: double.infinity,
       height: 245,
@@ -127,9 +156,11 @@ Container bestOfTheDayCard(Size size, BuildContext context) {
               height: 40,
               width: size.width * .3,
               child: TwoSidedRoundButton(
-                text: "Read",
+                text: "Watch",
                 radius: 24,
-                press: () {},
+                press: () {
+                  _launchInBrowser(launchURL);
+                },
               ),
             ),
           ),

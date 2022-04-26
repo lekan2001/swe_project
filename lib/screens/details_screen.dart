@@ -154,7 +154,7 @@ class DetailsScreen extends StatelessWidget {
                                   SizedBox(width: 10),
                                   Expanded(
                                     child: RoundedButton(
-                                      text: "Read",
+                                      text: "Watch",
                                       verticalPadding: 10,
                                       
                                     ),
@@ -288,10 +288,6 @@ class BookInfo extends StatelessWidget {
                          ),
                          ),
                          SizedBox(height: 5),
-                         RoundedButton(
-                           text: "Read",
-                         verticalPadding: 10,
-                          )
                       ],
                   )),
                   Column(children: <Widget>[

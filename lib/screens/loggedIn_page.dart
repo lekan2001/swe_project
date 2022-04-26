@@ -7,12 +7,15 @@ import 'package:swe_project/provider/google_sign_in.dart';
 import 'package:swe_project/screens/contact_us.dart';
 import 'package:swe_project/screens/details_screen.dart';
 import 'package:swe_project/screens/details_screen_one.dart';
+import 'package:swe_project/screens/details_screen_two.dart';
 import 'package:swe_project/screens/home_screen.dart';
 import 'package:swe_project/screens/security.dart';
 import 'package:swe_project/widgets/reading_card_list.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:swe_project/screens/notification.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 class LoggedInPage extends StatefulWidget {
   const LoggedInPage({ Key? key }) : super(key: key);
 
@@ -23,9 +26,31 @@ class LoggedInPage extends StatefulWidget {
 class _LoggedInPageState extends State<LoggedInPage> {
   final _advancedDrawerController = AdvancedDrawerController();
   final user = FirebaseAuth.instance.currentUser!;
+  Future<void>? _launched;
+  String phoneNumber = '';
+  String launchURL = 'https://www.youtube.com';
+  Future<void> _launchInBrowser(String url) async{
+    // ignore: deprecated_member_use
+    if (await canLaunch(url)){
+      // ignore: deprecated_member_use
+      await launch(
+        url, 
+        forceSafariVC: true,
+         forceWebView: true,
+      headers: <String, String>{
+        'header_key' : 'header_value'
+      }
+      );
+
+    } else{
+      throw 'Could not launch $url';
+    }
+  }
   void _handleProfileButtonPressed() {
     _advancedDrawerController.showDrawer();
   }
+
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -76,7 +101,6 @@ class _LoggedInPageState extends State<LoggedInPage> {
                             _handleProfileButtonPressed();
                           },),
                         ),
-                        //SizedBox(height: size.height * .1,),
                         //Center(
                           Padding(
                               padding: const EdgeInsets.only(top: 10, left: 24),
@@ -130,42 +154,72 @@ class _LoggedInPageState extends State<LoggedInPage> {
                                                 ),
                                               );
                                             },
-                                            pressRead: () {},
+                                            pressRead: () {
+                                              _launchInBrowser(launchURL);
+                                            },
                                 ),
                               ),
-                              ReadingListCard(
-                               image: "assets/images/book-2.png",
-                                          title: "Top Ten Business Hacks",
-                                          auth: "Herman Joel",
-                                          rating: 4.8,
-                                          pressDetails: () {
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) {
-                                                  return DetailsScreenOne();
-                                                },
-                                              ),
-                                            );
-                                          },
-                                          pressRead: () {},
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        return DetailsScreenOne();
+                                      },
+                                    ),
+                                  );
+                                },
+                                child: ReadingListCard(
+                                 image: "assets/images/book-2.png",
+                                            title: "Top Ten Business Hacks",
+                                            auth: "Herman Joel",
+                                            rating: 4.8,
+                                            pressDetails: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) {
+                                                    return DetailsScreenOne();
+                                                  },
+                                                ),
+                                              );
+                                            },
+                                            pressRead: () {
+                                              _launchInBrowser(launchURL);
+                                            },
+                                ),
                               ),
-                              ReadingListCard(
-                               image: "assets/images/book-3.png",
-                                          title: "How to win & influ...",
-                                          auth: "Gary Venchuk",
-                                          rating: 4.8,
-                                          pressDetails: () {
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) {
-                                                  return DetailsScreen();
-                                                },
-                                              ),
-                                            );
-                                          },
-                                          pressRead: () {},
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        return DetailsScreenTwo();
+                                      },
+                                    ),
+                                  );
+                                },
+                                child: ReadingListCard(
+                                 image: "assets/images/book-3.png",
+                                            title: "How to win & influ...",
+                                            auth: "Gary Venchuk",
+                                            rating: 4.8,
+                                            pressDetails: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) {
+                                                    return DetailsScreenTwo();
+                                                  },
+                                                ),
+                                              );
+                                            },
+                                            pressRead: () {
+                                              _launchInBrowser(launchURL);
+                                            },
+                                ),
                               ),
                               
                               const SizedBox(width: 30),
@@ -318,20 +372,11 @@ class _LoggedInPageState extends State<LoggedInPage> {
               ),
               ListTile(
                 onTap: () {
-                  
-                },
-                leading: Icon(Iconsax.profile_2user, color: Colors.black,),
-                title: Text('Profile', style: TextStyle(color: Colors.black),),
-              ),
-              ListTile(
-                onTap: () {
                   Navigator.push(context, MaterialPageRoute(
                     builder: (context) {
                       return Security();
                     },
                   ),);
-
-                 // Navigator.pushNamed(context, SECURITY_ROUTE);
                 },
                 leading: Icon(Iconsax.security, color: Colors.black,),
                 title: Text('Security',style: TextStyle(color: Colors.black)),
@@ -351,19 +396,11 @@ class _LoggedInPageState extends State<LoggedInPage> {
               Divider(color: Colors.grey.shade800),
               ListTile(
                 onTap: () {
-                 // Navigator.pushNamed(context, ABOUT_US_ROUTE);
-                },
-                leading: Icon(Iconsax.info_circle, color: Colors.black,),
-                title: Text('About us' ,style: TextStyle(color: Colors.black)),
-              ),
-              ListTile(
-                onTap: () {
                   Navigator.push(context, MaterialPageRoute(
                     builder: (context) {
                       return ContactUsScreen();
                     },
                   ),);
-                 // Navigator.pushNamed(context, SUPPORT_ROUTE);
                 },
                 leading: Icon(Iconsax.support, color: Colors.black,),
                 title: Text('Support' ,style: TextStyle(color: Colors.black)),
@@ -378,8 +415,6 @@ class _LoggedInPageState extends State<LoggedInPage> {
                                                   return WelcomePage();
                                                 },
                                               ),);
-                 // BlocProvider.of<HomeCubit>(context).signOut();
-                  //Navigator.pushNamed(context, SIGN_IN_ROUTE);
                 },
                 leading: Icon(Iconsax.logout, color: Colors.black,),
                 title: Text('Sign out', style: TextStyle(color: Colors.black)),

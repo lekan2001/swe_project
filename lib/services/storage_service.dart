@@ -33,6 +33,15 @@ class Storage{
     return downloadURL;
 
   }
+  // Future<firebase_storage.ListResult> downloadURLs (String imageName) async{
+  //   firebase_storage.ListResult downloadURL = await storage.ref('test/$imageName').listAll();
+  //   downloadURL.items.forEach((firebase_storage.DownloadTask downloadTask) {
+  //     listResult});
+  //
+  //   return downloadURL;
+  //
+  // }
+
 
 
 }

@@ -12,10 +12,8 @@ class navigation_bar extends StatelessWidget {
     tabBar: CupertinoTabBar(
       backgroundColor: Colors.pink[50],
       activeColor: Colors.black12,
-      inactiveColor: Colors.black,
-      onTap: (index){
-        //print('Clicked tab $index');
-      },
+      inactiveColor: Colors.white,
+      onTap: (index){},
       items: const [
         BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.home),
@@ -25,11 +23,6 @@ class navigation_bar extends StatelessWidget {
             icon: Icon(CupertinoIcons.book),
             label: 'Notes'
         ),
-        BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.tv),
-            label: 'Watch'
-        )
-        
       ],
 
     ),
@@ -38,10 +31,8 @@ class navigation_bar extends StatelessWidget {
         case 0 :
         return const HomeScreen();
         case 1:
+        default:
           return const notes();
-          case 2:
-            default:
-            return const youtube();
       }
     }
 
