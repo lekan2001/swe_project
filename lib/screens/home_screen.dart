@@ -1,15 +1,22 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:swe_project/constants.dart';
-import 'package:swe_project/screens/details_screen.dart';
-import 'package:swe_project/screens/details_screen_one.dart';
 import 'package:swe_project/screens/loggedIn_page.dart';
+import 'package:swe_project/screens/login_error.dart';
 import 'package:swe_project/widgets/book_rating.dart';
-import 'package:swe_project/widgets/reading_card_list.dart';
 import 'package:swe_project/widgets/two_sided_round_button.dart';
-
-class HomeScreen extends StatelessWidget {
+import 'package:url_launcher/url_launcher.dart';
+class HomeScreen extends StatefulWidget {
   const HomeScreen({ Key? key }) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+
+
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -25,25 +32,47 @@ class HomeScreen extends StatelessWidget {
             child: CircularProgressIndicator(
               color: Colors.amber
             ));
-        } else if (snapshot.hasError){
-          return const Center(
-            child: Text('Something Went Wrong!'));
-        } else if(snapshot.hasData){
+        }
+        else if (snapshot.hasError){
+           return const loginError();
+        }
+        else if (!snapshot.hasData){
+          return const loginError();
+        }
+        else if(snapshot.hasData){
           return const LoggedInPage();
         }
-        else { 
+        else {
           return Container(
             child: const Center(
               child: Text('Please Sign In')),
           );
-            } 
+            }
       },
      // child:
     );
   }
 }
 Container bestOfTheDayCard(Size size, BuildContext context) {
-    return Container(
+  String launchURL = 'https://www.youtube.com/watch?v=YKAfKprBXQc';
+  Future<void> _launchInBrowser(String url) async{
+    // ignore: deprecated_member_use
+    if (await canLaunch(url)){
+      // ignore: deprecated_member_use
+      await launch(
+          url,
+          forceSafariVC: true,
+          forceWebView: true,
+          headers: <String, String>{
+            'header_key' : 'header_value'
+          }
+      );
+
+    } else{
+      throw 'Could not launch $url';
+    }
+  }
+  return Container(
       margin: const EdgeInsets.symmetric(vertical: 20),
       width: double.infinity,
       height: 245,
@@ -71,7 +100,7 @@ Container bestOfTheDayCard(Size size, BuildContext context) {
                   Container(
                     margin: const EdgeInsets.only(top: 10.0, bottom: 10.0),
                     child: const Text(
-                      "New York Time Best For 11th March 2020",
+                      "New York Time Best For 11th March 2022",
                       style: TextStyle(
                         fontSize: 9,
                         color: kLightBlackCOlor,
@@ -83,7 +112,7 @@ Container bestOfTheDayCard(Size size, BuildContext context) {
                     style: Theme.of(context).textTheme.headline6,
                   ),
                   const Text(
-                    "Gary Venchuk",
+                    "Dale Carnigie",
                     style: TextStyle(color: kLightBlackCOlor),
                   ),
                   Padding(
@@ -127,9 +156,11 @@ Container bestOfTheDayCard(Size size, BuildContext context) {
               height: 40,
               width: size.width * .3,
               child: TwoSidedRoundButton(
-                text: "Read",
+                text: "Watch",
                 radius: 24,
-                press: () {},
+                press: () {
+                  _launchInBrowser(launchURL);
+                },
               ),
             ),
           ),

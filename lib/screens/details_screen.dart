@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:swe_project/constants.dart';
-import 'package:swe_project/screens/youtube_player.dart';
 import 'package:swe_project/widgets/book_rating.dart';
 import 'package:swe_project/widgets/rounded_button.dart';
 
@@ -154,11 +153,9 @@ class DetailsScreen extends StatelessWidget {
                                   SizedBox(width: 10),
                                   Expanded(
                                     child: RoundedButton(
-                                      text: "Read",
+                                      text: "Watch",
                                       verticalPadding: 10,
                                       
-                                      
-                                    
                                     ),
                                   ),
                                 ],
@@ -290,9 +287,6 @@ class BookInfo extends StatelessWidget {
                          ),
                          ),
                          SizedBox(height: 5),
-                         RoundedButton(text: "Read",
-                         verticalPadding: 10,
-                          )
                       ],
                   )),
                   Column(children: <Widget>[

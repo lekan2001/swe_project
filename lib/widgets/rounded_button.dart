@@ -6,6 +6,8 @@ class RoundedButton extends StatelessWidget {
   final VoidCallback? press;
   final double verticalPadding;
   final double fontSize;
+  final Color color;
+  final double btnWidth;
 
   const RoundedButton({
     Key? key,
@@ -13,6 +15,8 @@ class RoundedButton extends StatelessWidget {
     this.press,
     this.verticalPadding = 16,
     this.fontSize = 16, 
+    this.color = Colors.white,
+    this.btnWidth = double.infinity
   }) : super(key: key);
 
   @override
@@ -20,13 +24,13 @@ class RoundedButton extends StatelessWidget {
     return GestureDetector(
       onTap: press,
       child: Container(
-        width: double.infinity,
+        width: btnWidth,
         alignment: Alignment.center,
         margin: const EdgeInsets.symmetric(vertical: 16),
         padding:
             EdgeInsets.symmetric(vertical: verticalPadding,),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: color,
           borderRadius: BorderRadius.circular(30),
           boxShadow: [
             BoxShadow(

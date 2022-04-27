@@ -112,7 +112,7 @@ class ReadingListCard extends StatelessWidget {
                       ),
                       Expanded(
                         child: TwoSidedRoundButton(
-                          text: "Read",
+                          text: "Watch",
                           press: pressRead,
                         ),
                       )
