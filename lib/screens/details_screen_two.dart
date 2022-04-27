@@ -55,15 +55,15 @@ class DetailsScreenTwo extends StatelessWidget {
                           children:
                           <Widget>[
                             ChapterCard(
-                              name: "Money",
+                              name: "Friends",
                               chapterNumber: 1,
-                              tag: "Life is about change",
+                              tag: "Life is about friends",
                               press: () {},
                             ),
                             ChapterCard(
-                              name: "Power",
+                              name: "Selecting Frie..",
                               chapterNumber: 2,
-                              tag: "Everything loves power",
+                              tag: "Everything is better ...",
                               press: () {},
                             ),
                             ChapterCard(
@@ -153,7 +153,7 @@ class DetailsScreenTwo extends StatelessWidget {
                                             SizedBox(width: 10),
                                             Expanded(
                                               child: RoundedButton(
-                                                text: "Read",
+                                                text: "Watch",
                                                 verticalPadding: 10,
                                               ),
                                             ),

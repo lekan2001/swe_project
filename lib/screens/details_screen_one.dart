@@ -55,27 +55,27 @@ class DetailsScreenOne extends StatelessWidget {
                   children: 
                   <Widget>[
                     ChapterCard(
-                      name: "Money",
+                      name: "Sacfrifice",
                         chapterNumber: 1,
-                        tag: "Life is about change",
+                        tag: "Life is about sacrifice",
                         press: () {},
                     ),
                     ChapterCard(
-                        name: "Power",
+                        name: "Success",
                         chapterNumber: 2,
-                        tag: "Everything loves power",
+                        tag: "Everything loves success",
                         press: () {},
                       ),
                       ChapterCard(
-                        name: "Influence",
+                        name: "Determination",
                         chapterNumber: 3,
                         tag: "Influence easily like never before",
                         press: () {},
                       ),
                       ChapterCard(
-                        name: "Win",
+                        name: "Wealth",
                         chapterNumber: 4,
-                        tag: "Winning is what matters",
+                        tag: "Wealth really matters",
                         press: () {},
                       ),
                       const SizedBox(height: 10),
@@ -153,7 +153,7 @@ class DetailsScreenOne extends StatelessWidget {
                                   SizedBox(width: 10),
                                   Expanded(
                                     child: RoundedButton(
-                                      text: "Read",
+                                      text: "Watch",
                                       verticalPadding: 10,
                                     ),
                                   ),

@@ -26,12 +26,12 @@ class NotificationScreenBody extends State<NotificationScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Notification", style: TextStyle(color: Colors.pink[50], fontWeight: FontWeight.bold),),
+        title: Text("Notification", style: TextStyle(color: Colors.pink, fontWeight: FontWeight.bold),),
         automaticallyImplyLeading: true,
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         leading: BackButton(
-            color: Colors.pink[50]
+            color: Colors.pink,
         ),
       ),
       body: SingleChildScrollView(

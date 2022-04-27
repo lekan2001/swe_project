@@ -10,9 +10,9 @@ class navigation_bar extends StatelessWidget {
   @override
   Widget build(BuildContext context) => CupertinoTabScaffold(
     tabBar: CupertinoTabBar(
-      backgroundColor: Colors.pink[50],
-      activeColor: Colors.black12,
-      inactiveColor: Colors.white,
+      backgroundColor: Colors.white,
+      activeColor: Colors.pinkAccent,
+      inactiveColor: Colors.black12,
       onTap: (index){},
       items: const [
         BottomNavigationBarItem(

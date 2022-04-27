@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:swe_project/constants.dart';
-import 'package:swe_project/screens/youtube_player.dart';
 import 'package:swe_project/widgets/book_rating.dart';
 import 'package:swe_project/widgets/rounded_button.dart';
 

@@ -37,17 +37,17 @@ class SecurityScreenBody extends State<Security> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Security", style: TextStyle(color: Colors.pink[50], fontWeight: FontWeight.bold),),
+        title: Text("Security", style: TextStyle(color: Colors.pink, fontWeight: FontWeight.bold),),
         automaticallyImplyLeading: true,
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         leading: BackButton(
-            color: Colors.pink[50]
+            color: Colors.pink
         ),
       ),
-      body: Container(
-        color: Colors.pink[50],
-        child: SingleChildScrollView(
+      //body: Container(
+        //color: Colors.pink[50],
+        body: SingleChildScrollView(
             child: Column(
               children: <Widget>[
                 Container(
@@ -139,7 +139,7 @@ class SecurityScreenBody extends State<Security> {
                 )
               ],
             )),
-      ),
+      //),
     );
   }
 }

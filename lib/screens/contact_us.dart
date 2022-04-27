@@ -33,13 +33,13 @@ class ContactUsScreenState extends State<ContactUsScreen> {
         appBar: AppBar(
           title: Text("Contact Us",
               style: TextStyle(
-                  color: Colors.pink[50],
+                  color: Colors.pink,
                   fontSize: 30,
                   fontWeight: FontWeight.bold)),
           automaticallyImplyLeading: true,
           backgroundColor: Colors.transparent,
           elevation: 0.0,
-          leading: BackButton(color: Colors.pink[50]),
+          leading: BackButton(color: Colors.pink),
         ),
         body: SingleChildScrollView(
             child: Container(
@@ -50,9 +50,7 @@ class ContactUsScreenState extends State<ContactUsScreen> {
                     height: 100,
                     child: TextFormField(
                       controller: userNameController,
-                      //focusNode: new AlwaysDisabledFocusNode(),
                       obscureText: false,
-                      //initialValue: "John Doe",
                       maxLines: 1,
                       decoration: InputDecoration(
                         filled: true,
@@ -69,8 +67,6 @@ class ContactUsScreenState extends State<ContactUsScreen> {
                     child: TextFormField(
                       controller: userEmailController,
                       obscureText: false,
-
-                      //initialValue: "johndoe@gmail.com",
                       maxLines: 1,
                       decoration: InputDecoration(
                         filled: true,
@@ -120,10 +116,10 @@ class ContactUsScreenState extends State<ContactUsScreen> {
                   ),
                   new Text("You can also contact us at ",
                       softWrap: true, textAlign: TextAlign.center),
-                  new Text("Customersupport@gmail.com",
+                  new Text("adisaolalekan2016@gmail.com",
                       textAlign: TextAlign.center,
                       style: new TextStyle(
-                          fontWeight: FontWeight.normal, color: Colors.pink[50]))
+                          fontWeight: FontWeight.normal, color: Colors.pink))
                 ]))));
   }
   Future sendEmail(
@@ -154,6 +150,6 @@ class ContactUsScreenState extends State<ContactUsScreen> {
       }
       )
     );
-    print(response.body);
+    //print(response.body);
   }
 }

@@ -14,6 +14,7 @@ import 'package:swe_project/widgets/reading_card_list.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:swe_project/screens/notification.dart';
+import 'package:swe_project/widgets/rounded_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class LoggedInPage extends StatefulWidget {
@@ -29,6 +30,8 @@ class _LoggedInPageState extends State<LoggedInPage> {
   Future<void>? _launched;
   String phoneNumber = '';
   String launchURL = 'https://www.youtube.com';
+  String launchURLBookOne = 'https://www.youtube.com/watch?v=_ZZbhRuVDm8';
+  String launchURLBookThree = 'https://www.youtube.com/watch?v=YKAfKprBXQc';
   Future<void> _launchInBrowser(String url) async{
     // ignore: deprecated_member_use
     if (await canLaunch(url)){
@@ -112,7 +115,7 @@ class _LoggedInPageState extends State<LoggedInPage> {
                           child: RichText(text: TextSpan(
                             style: Theme.of(context).textTheme.headline5,
                             children: const [
-                              TextSpan(text: "What are you \n reading "),
+                              TextSpan(text: "What are you \n looking for "),
                               TextSpan(
                                 text: "today?",
                                 style: TextStyle(
@@ -155,7 +158,7 @@ class _LoggedInPageState extends State<LoggedInPage> {
                                               );
                                             },
                                             pressRead: () {
-                                              _launchInBrowser(launchURL);
+                                              _launchInBrowser(launchURLBookOne);
                                             },
                                 ),
                               ),
@@ -203,8 +206,8 @@ class _LoggedInPageState extends State<LoggedInPage> {
                                 },
                                 child: ReadingListCard(
                                  image: "assets/images/book-3.png",
-                                            title: "How to win & influ...",
-                                            auth: "Gary Venchuk",
+                                            title: "How to win friends & influ...",
+                                            auth: "Dale Carniege",
                                             rating: 4.8,
                                             pressDetails: () {
                                               Navigator.push(
@@ -217,8 +220,70 @@ class _LoggedInPageState extends State<LoggedInPage> {
                                               );
                                             },
                                             pressRead: () {
-                                              _launchInBrowser(launchURL);
+                                              _launchInBrowser(launchURLBookThree);
                                             },
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        return DetailsScreen();
+                                      },
+                                    ),
+                                  );
+                                },
+                                child: ReadingListCard(
+                                  image: "assets/images/book-1.png",
+                                  title: "Crushing & Influence",
+                                  auth: "Gary Venchuk",
+                                  rating: 4.9,
+                                  pressDetails: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) {
+                                          return DetailsScreen();
+                                        },
+                                      ),
+                                    );
+                                  },
+                                  pressRead: () {
+                                    _launchInBrowser(launchURLBookOne);
+                                  },
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        return DetailsScreenOne();
+                                      },
+                                    ),
+                                  );
+                                },
+                                child: ReadingListCard(
+                                  image: "assets/images/book-2.png",
+                                  title: "Top Ten Business Hacks",
+                                  auth: "Herman Joel",
+                                  rating: 4.8,
+                                  pressDetails: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) {
+                                          return DetailsScreenOne();
+                                        },
+                                      ),
+                                    );
+                                  },
+                                  pressRead: () {
+                                    _launchInBrowser(launchURL);
+                                  },
                                 ),
                               ),
                               
@@ -250,85 +315,100 @@ class _LoggedInPageState extends State<LoggedInPage> {
                                       children: const [
                                         TextSpan(text: "Continue "),
                                         TextSpan(
-                                          text: "reading...",
+                                          text: "watching...",
                                           style: TextStyle(fontWeight: FontWeight.bold),
                                         ),
                                       ],
                                     ),
                                   ),
                                   const SizedBox(height: 20),
-                                  Container(
-                                    height: 80,
-                                    width: double.infinity,
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(38.5),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          offset: const Offset(0, 10),
-                                          blurRadius: 33,
-                                          color: const Color(0xFFD3D3D3).withOpacity(.84),
-                                        ),
-                                      ],
-                                    ),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(38.5),
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          Expanded(
-                                            child: Padding(
-                                              padding:  const EdgeInsets.only(
-                                                left: 30,
-                                                right: 20
-                                              ),
-                                              child: Row(
-                                                children: <Widget>[
-                                                  Expanded(
-                                                    child: Column(
-                                                      mainAxisAlignment:
-                                                       MainAxisAlignment.end,
-                                                      crossAxisAlignment: 
-                                                      CrossAxisAlignment.start,
-                                                      children: const <Widget>[
-                                                        Text("Crushing & Influence", 
-                                                        style: TextStyle(
-                                                          fontWeight: FontWeight.bold,
-                                                        ),),
-                                                        Text("Gary Venchuck", style: TextStyle(
-                                                          color: kLightBlackCOlor,
-                                                        ),),
-                                                        Align(
-                                                          alignment: Alignment.bottomRight,
-                                                          child: Text("Chapter 7 of 10", 
+                                  GestureDetector(
+                                    onTap: (){
+                                      _launchInBrowser(launchURLBookOne);
+                                    },
+                                    child: Container(
+                                      height: 80,
+                                      width: double.infinity,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(38.5),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            offset: const Offset(0, 10),
+                                            blurRadius: 33,
+                                            color: const Color(0xFFD3D3D3).withOpacity(.84),
+                                          ),
+                                        ],
+                                      ),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(38.5),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Expanded(
+                                              child: Padding(
+                                                padding:  const EdgeInsets.only(
+                                                  left: 30,
+                                                  right: 20
+                                                ),
+                                                child: Row(
+                                                  children: <Widget>[
+                                                    Expanded(
+                                                      child: Column(
+                                                        mainAxisAlignment:
+                                                         MainAxisAlignment.end,
+                                                        crossAxisAlignment:
+                                                        CrossAxisAlignment.start,
+                                                        children: const <Widget>[
+                                                          Text("Crushing & Influence",
                                                           style: TextStyle(
-                                                            fontSize: 10,
+                                                            fontWeight: FontWeight.bold,
+                                                          ),),
+                                                          Text("Gary Venchuck", style: TextStyle(
                                                             color: kLightBlackCOlor,
                                                           ),),
-                                                        ),
-                                                        SizedBox(height: 5,)
-                                                      ],
+                                                          Align(
+                                                            alignment: Alignment.bottomRight,
+                                                            child: Text("Chapter 7 of 10",
+                                                            style: TextStyle(
+                                                              fontSize: 10,
+                                                              color: kLightBlackCOlor,
+                                                            ),),
+                                                          ),
+                                                          SizedBox(height: 5,)
+                                                        ],
+                                                      ),
                                                     ),
-                                                  ),
-                                                  Image.asset("assets/images/book-1.png",
-                                                  width: 55,)
-                                                ],
+                                                    Image.asset("assets/images/book-1.png",
+                                                    width: 55,)
+                                                  ],
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                          Container(
-                                            height: 7,
-                                            width: size.width * .65,
-                                            decoration: BoxDecoration(
-                                              color: kProgressIndicator,
-                                              borderRadius: BorderRadius.circular(7)
-                                            ),
-                                          )
-                                        ],
+                                            Container(
+                                              height: 7,
+                                              width: size.width * .65,
+                                              decoration: BoxDecoration(
+                                                color: kProgressIndicator,
+                                                borderRadius: BorderRadius.circular(7)
+                                              ),
+                                            )
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
                                   const SizedBox(height: 40,),
+                             Center(
+                               child: RoundedButton(
+                                 text: 'Launch Youtube Search',
+                                 color: kProgressIndicator,
+                                 press: (){
+                                   _launchInBrowser(launchURL);
+                                 },
+
+                               ),
+                             )
        
                             ],
                           ),
